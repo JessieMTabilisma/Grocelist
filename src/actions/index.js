@@ -14,3 +14,11 @@ export const deleteItem = (id) => ({
     id
   }
 })
+
+export const updateItem = (id, item) => ({
+  type: 'UPDATE_ITEM',
+  payload: {
+    id,
+    item
+  }
+})

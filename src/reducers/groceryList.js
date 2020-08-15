@@ -1,7 +1,6 @@
 const grocerylist = (state = [], action = {}) => {
   switch (action.type) {
     case 'ADD_ITEM':
-      console.log(action)
       return [
         ...state,
         {
@@ -12,6 +11,11 @@ const grocerylist = (state = [], action = {}) => {
       ]
     case 'DELETE_ITEM':
       return [...state.filter((item) => item.id !== action.payload.id)]
+    case 'UPDATE_ITEM':
+      console.log(action.payload)
+      return [
+        ...state
+      ]
     default:
       return state
   }
