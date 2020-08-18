@@ -24,7 +24,7 @@ const ItemList = (props) => {
 }
 
 const mapStateToProps = state => ({
-  groceryItem: state.grocerylist
+  groceryItem: state.grocerylist.goCart
 })
 const mapDispatchToProps = dispatch => ({
   deleteItem: (id) => dispatch(deleteItem(id)),

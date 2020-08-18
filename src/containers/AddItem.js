@@ -8,7 +8,6 @@ const AddItem = ({ dispatch }) => {
   const [form] = Form.useForm()
 
   const onFinish = values => {
-    console.log(values)
     dispatch(addItem(values.itemValue))
     form.resetFields()
   }
