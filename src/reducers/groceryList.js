@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 const initialState = {
   goCart: []
 }
@@ -22,10 +23,11 @@ const grocerylist = (state = initialState, action = {}) => {
         goCart: state.goCart.filter((item) => item.id !== action.payload.id)
       }
     case 'UPDATE_ITEM':
-
+      const data = action.payload
+      console.log(action.payload.item)
       return {
         ...state,
-        goCart: state.goCart.map(item => console.log(item))
+        goCart: state.goCart.map(item => item._id === data.id ? [item.item] : data.item)
       }
     default:
       return state

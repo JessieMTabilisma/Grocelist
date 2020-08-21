@@ -10,7 +10,6 @@ const EditItem = (props) => {
 
   const showModal = () => {
     setVisibility(true)
-    console.log('error')
   }
 
   const onUpdate = values => {
