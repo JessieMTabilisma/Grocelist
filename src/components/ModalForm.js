@@ -28,9 +28,6 @@ const ModalForm = ({ visible, onUpdate, onCancel }) => {
       >
         <Form.Item
           name="item"
-          rules={[
-            { required: true }
-          ]}
         >
           <Input />
         </Form.Item>

@@ -10,6 +10,7 @@ const ItemList = (props) => {
   return (
     <List
       bordered
+      locale={{ emptyText: 'No Item' }}
       dataSource={props.groceryItem}
       renderItem={item => (
         // eslint-disable-next-line react/jsx-key
@@ -27,6 +28,6 @@ const mapStateToProps = state => ({
   groceryItem: state.grocerylist.goCart
 })
 const mapDispatchToProps = dispatch => ({
-  deleteItem: (id) => dispatch(deleteItem(id)),
+  deleteItem: (id) => dispatch(deleteItem(id))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ItemList)

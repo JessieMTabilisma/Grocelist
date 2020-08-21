@@ -19,6 +19,7 @@ export const updateItem = (id, item) => ({
   type: 'UPDATE_ITEM',
   payload: {
     id,
-    item
+    item,
+    completed: false
   }
 })
