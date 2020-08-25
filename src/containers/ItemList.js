@@ -9,7 +9,6 @@ import EditItem from '../components/EditItem'
 const ItemList = (props) => {
   return (
     <List
-      bordered
       locale={{ emptyText: 'No Item' }}
       dataSource={props.groceryItem}
       renderItem={item => (
@@ -25,7 +24,7 @@ const ItemList = (props) => {
 }
 
 const mapStateToProps = state => ({
-  groceryItem: state.grocerylist.goCart
+  groceryItem: state.grocerylist.inventory
 })
 const mapDispatchToProps = dispatch => ({
   deleteItem: (id) => dispatch(deleteItem(id))

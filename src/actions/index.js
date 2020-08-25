@@ -1,9 +1,9 @@
-let indexItem = 0
+import { v1 as uuid } from 'uuid'
 
 export const addItem = (item) => ({
   type: 'ADD_ITEM',
   payload: {
-    id: indexItem++,
+    id: uuid(),
     item
   }
 })

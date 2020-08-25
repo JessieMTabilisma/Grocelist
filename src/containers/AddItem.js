@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addItem } from '../actions'
-import { Form, Input, Button, Row, Col } from 'antd'
-import { AudioOutlined, PlusOutlined } from '@ant-design/icons'
+import { Input, Form } from 'antd'
+import { AudioOutlined } from '@ant-design/icons'
+import { useForm } from 'antd/lib/form/Form'
 
 // eslint-disable-next-line react/prop-types
 const AddItem = ({ dispatch }) => {
-  const [form] = Form.useForm()
-
-  const onFinish = values => {
-    dispatch(addItem(values.itemValue))
+  const [form] = useForm()
+  const onSearch = values => {
+    dispatch(addItem(values))
     form.resetFields()
   }
   const suffix = (
@@ -22,23 +22,16 @@ const AddItem = ({ dispatch }) => {
   )
 
   return (
-    <Form
-      form={form}
-      onFinish={onFinish}
-      name="control-hooks"
-    >
-      <Row gutter={12}>
-        <Col xs={17}>
-          <Form.Item name="itemValue">
-            <Input suffix={suffix} size="large"/>
-          </Form.Item>
-        </Col>
-        <Col xs={7}>
-          <Form.Item>
-            <Button type="primary" htmlType="submit" size="large" style={{ padding: '0rem 1rem 0rem 1rem', width: '100%' }} icon={<PlusOutlined />}>Add</Button>
-          </Form.Item>
-        </Col>
-      </Row>
+    <Form form={form}>
+      <Form.Item>
+        <Input.Search
+          placeholder="Search item"
+          enterButton="Add"
+          size="large"
+          suffix={suffix}
+          onSearch={onSearch}
+        />
+      </Form.Item>
     </Form>
   )
 }

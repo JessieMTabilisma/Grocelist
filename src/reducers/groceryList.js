@@ -1,6 +1,8 @@
+import sampleProduct from './sample'
 /* eslint-disable no-case-declarations */
 const initialState = {
-  goCart: []
+  goCart: [],
+  inventory: sampleProduct
 }
 
 const grocerylist = (state = initialState, action = {}) => {
