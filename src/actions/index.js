@@ -1,10 +1,9 @@
-import { v1 as uuid } from 'uuid'
-
-export const addItem = (item) => ({
+export const addItem = (id, item, img) => ({
   type: 'ADD_ITEM',
   payload: {
-    id: uuid(),
-    item
+    id,
+    item,
+    img
   }
 })
 

@@ -2,21 +2,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { List, Typography, Button } from 'antd'
-import { DeleteFilled } from '@ant-design/icons'
-import { deleteItem } from '../actions'
-import EditItem from '../components/EditItem'
+import { addItem } from '../actions'
 
 const ItemList = (props) => {
+  const { Title, Text } = Typography
   return (
     <List
       locale={{ emptyText: 'No Item' }}
       dataSource={props.groceryItem}
       renderItem={item => (
         // eslint-disable-next-line react/jsx-key
-        <List.Item actions={[<EditItem id={item.id}/>, <Button onClick={() => props.deleteItem(item.id)}>
-          <DeleteFilled />
-        </Button>]}>
-          <Typography level={2}>{item.item}</Typography>
+        <List.Item actions={[<Button type
+          ="primary" onClick={addItem(item.id, item.product_name, item.product_image)}>Add</Button>]}>
+          <List.Item.Meta
+            avatar={<img src={item.product_image} alt={item.product_name} style={{ height: '4rem' }} />}
+            title={<Title level={4}>{item.product_name}</Title>}
+            description={<Text>qty: per item, per box </Text>}
+          />
         </List.Item>
       )}
     />
@@ -27,6 +29,7 @@ const mapStateToProps = state => ({
   groceryItem: state.grocerylist.inventory
 })
 const mapDispatchToProps = dispatch => ({
-  deleteItem: (id) => dispatch(deleteItem(id))
+  addItem: (id, item, img) => dispatch(addItem(id, item, img))
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ItemList)
