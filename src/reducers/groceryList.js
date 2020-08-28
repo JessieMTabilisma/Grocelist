@@ -8,14 +8,13 @@ const initialState = {
 const grocerylist = (state = initialState, action = {}) => {
   switch (action.type) {
     case 'ADD_ITEM':
+      console.log(action.payload)
       return {
         ...state,
         goCart: [
           ...state.goCart,
           {
-            id: action.payload.id,
-            item: action.payload.item,
-            completed: false
+            id: action.payload.id
           }
         ]
       }

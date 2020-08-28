@@ -6,10 +6,11 @@ import { AudioOutlined } from '@ant-design/icons'
 import { useForm } from 'antd/lib/form/Form'
 
 // eslint-disable-next-line react/prop-types
-const AddItem = ({ dispatch }) => {
+const AddItem = (props) => {
+  const { Search } = Input
   const [form] = useForm()
-  const onSearch = values => {
-    dispatch(addItem(values))
+  const onSearch = id => {
+    props.dispatch(addItem(id))
     form.resetFields()
   }
   const suffix = (
@@ -24,12 +25,12 @@ const AddItem = ({ dispatch }) => {
   return (
     <Form form={form}>
       <Form.Item>
-        <Input.Search
+        <Search
           placeholder="Search item"
           enterButton="Add"
           size="large"
           suffix={suffix}
-          onSearch={onSearch}
+          onSearch={onSearch(props.addToCart)}
         />
       </Form.Item>
     </Form>

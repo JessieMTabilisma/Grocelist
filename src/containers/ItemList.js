@@ -6,14 +6,16 @@ import { addItem } from '../actions'
 
 const ItemList = (props) => {
   const { Title, Text } = Typography
+  const handleButton = id => {
+    props.addItem(id)
+  }
   return (
     <List
       locale={{ emptyText: 'No Item' }}
       dataSource={props.groceryItem}
       renderItem={item => (
         // eslint-disable-next-line react/jsx-key
-        <List.Item actions={[<Button type
-          ="primary" onClick={addItem(item.id, item.product_name, item.product_image)}>Add</Button>]}>
+        <List.Item actions={[<Button type="primary" onClick={() => handleButton(item.id)}>Add</Button>]}>
           <List.Item.Meta
             avatar={<img src={item.product_image} alt={item.product_name} style={{ height: '4rem' }} />}
             title={<Title level={4}>{item.product_name}</Title>}
@@ -29,7 +31,6 @@ const mapStateToProps = state => ({
   groceryItem: state.grocerylist.inventory
 })
 const mapDispatchToProps = dispatch => ({
-  addItem: (id, item, img) => dispatch(addItem(id, item, img))
-
+  addItem: (id) => dispatch(addItem(id))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ItemList)
