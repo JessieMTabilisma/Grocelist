@@ -13,16 +13,18 @@ const ItemList = (props) => {
     <List
       locale={{ emptyText: 'No Item' }}
       dataSource={props.groceryItem}
-      renderItem={item => (
+      renderItem={item =>
+        item.selected ? null : (
         // eslint-disable-next-line react/jsx-key
-        <List.Item actions={[<Button type="primary" onClick={() => handleButton(item.id)}>Add</Button>]}>
-          <List.Item.Meta
-            avatar={<img src={item.product_image} alt={item.product_name} style={{ height: '4rem' }} />}
-            title={<Title level={4}>{item.product_name}</Title>}
-            description={<Text>qty: per item, per box </Text>}
-          />
-        </List.Item>
-      )}
+          <List.Item actions={[<Button type="primary" onClick={() => handleButton(item.id)}>Add</Button>]}>
+            <List.Item.Meta
+              avatar={<img src={item.product_image} alt={item.product_name} style={{ height: '4rem' }} />}
+              title={<Title level={4}>{item.product_name}</Title>}
+              description={<Text>qty: per item, per box </Text>}
+            />
+          </List.Item>
+        )
+      }
     />
   )
 }
@@ -34,3 +36,12 @@ const mapDispatchToProps = dispatch => ({
   addItem: (id) => dispatch(addItem(id))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ItemList)
+
+// // eslint-disable-next-line react/jsx-key
+// <List.Item actions={[<Button type="primary" onClick={() => handleButton(item.id)}>Add</Button>]}>
+//   <List.Item.Meta
+//     avatar={<img src={item.product_image} alt={item.product_name} style={{ height: '4rem' }} />}
+//     title={<Title level={4}>{item.product_name}</Title>}
+//     description={<Text>qty: per item, per box </Text>}
+//   />
+// </List.Item>

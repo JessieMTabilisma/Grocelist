@@ -1,5 +1,5 @@
 import sampleProduct from './sample'
-/* eslint-disable no-case-declarations */
+
 const initialState = {
   goCart: [],
   inventory: sampleProduct
@@ -8,7 +8,6 @@ const initialState = {
 const grocerylist = (state = initialState, action = {}) => {
   switch (action.type) {
     case 'ADD_ITEM':
-      console.log(action.payload)
       return {
         ...state,
         goCart: [
@@ -16,6 +15,9 @@ const grocerylist = (state = initialState, action = {}) => {
           {
             id: action.payload.id
           }
+        ],
+        inventory: [
+          ...state.inventory.map(item => item.id === action.payload.id ? { ...item, selected: true } : item)
         ]
       }
     case 'DELETE_ITEM':
@@ -24,6 +26,7 @@ const grocerylist = (state = initialState, action = {}) => {
         goCart: state.goCart.filter((item) => item.id !== action.payload.id)
       }
     case 'UPDATE_ITEM':
+      // eslint-disable-next-line no-case-declarations
       const data = action.payload
       return {
         ...state,
