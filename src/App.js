@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import AddItem from './containers/AddItem'
+// import ItemSearch from './containers/ItemSearch'
 import ItemList from './containers/ItemList'
 import { Row, Col } from 'antd'
 import Header from './components/Header'
@@ -11,9 +11,6 @@ function App () {
       <Row gutter={[8, 32]}>
         <Col xs={24}>
           <Header />
-        </Col>
-        <Col xs={24}>
-          <AddItem />
         </Col>
         <Col xs={24}>
           <ItemList />

@@ -6,7 +6,7 @@ import { AudioOutlined } from '@ant-design/icons'
 import { useForm } from 'antd/lib/form/Form'
 
 // eslint-disable-next-line react/prop-types
-const AddItem = (props) => {
+const ItemSearch = (props) => {
   const { Search } = Input
   const [form] = useForm()
   const onSearch = id => {
@@ -27,7 +27,7 @@ const AddItem = (props) => {
       <Form.Item>
         <Search
           placeholder="Search item"
-          enterButton="Add"
+          enterButton="Search"
           size="large"
           suffix={suffix}
           onSearch={onSearch(props.addToCart)}
@@ -37,4 +37,4 @@ const AddItem = (props) => {
   )
 }
 
-export default connect()(AddItem)
+export default connect()(ItemSearch)
