@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { List, Typography, Button, Row, Col, Form, Input } from 'antd'
+import { List, Typography, Button, Row, Col, Input } from 'antd'
 import { addItem } from '../actions'
-import { AudioOutlined } from '@ant-design/icons'
+import { AudioOutlined, PlusOutlined } from '@ant-design/icons'
+
 
 const ItemList = (props) => {
   const [search, setSearch] = useState('')
@@ -43,7 +44,7 @@ const ItemList = (props) => {
           renderItem={item =>
             item.selected ? null : (
             // eslint-disable-next-line react/jsx-key
-              <List.Item actions={[<Button type="primary" onClick={() => handleButton(item.id)}>Add</Button>]}>
+              <List.Item actions={[<Button type="primary" icon={<PlusOutlined />} onClick={() => handleButton(item.id)}>Add</Button>]}>
                 <List.Item.Meta
                   avatar={<img src={item.product_image} alt={item.product_name} style={{ height: '4rem' }} />}
                   title={<Title level={4}>{item.product_name}</Title>}

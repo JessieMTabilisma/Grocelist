@@ -1,0 +1,15 @@
+.list__item { 
+    background-color: #ffffff;
+    margin-top: 4rem;
+    border: 0pxl;
+    padding: 10px 10px;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.title__item {
+    color: grey;
+    font-size: 15px;
+}
+.image__item{
+    height: 3rem;
+}

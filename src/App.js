@@ -1,22 +1,34 @@
 import React from 'react'
 import './App.css'
-// import ItemSearch from './containers/ItemSearch'
 import ItemList from './containers/ItemList'
 import { Row, Col } from 'antd'
 import Header from './components/Header'
+import MyList from './containers/CartList/CartList'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
 
 function App () {
   return (
-    <div className="App">
-      <Row gutter={[8, 32]}>
-        <Col xs={24}>
-          <Header />
-        </Col>
-        <Col xs={24}>
-          <ItemList />
-        </Col>
-      </Row>
-    </div>
+    <Router>
+      <div className="App">
+        <Row gutter={[8, 32]}>
+          <Col xs={24}>
+            <Header />
+          </Col>
+        </Row>
+        <Switch>
+          <Route exact path="/">
+            <ItemList />
+          </Route>
+          <Route path="/mylist">
+            <MyList />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   )
 }
 
