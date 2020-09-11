@@ -10,8 +10,8 @@ const ItemList = (props) => {
   const [search, setSearch] = useState('')
   const { Title, Text } = Typography
 
-  const handleButton = id => {
-    props.addItem(id)
+  const handleButton = item => {
+    props.addItem(item)
   }
 
   const suffix = (
@@ -44,9 +44,9 @@ const ItemList = (props) => {
           renderItem={item =>
             item.selected ? null : (
             // eslint-disable-next-line react/jsx-key
-              <List.Item actions={[<Button type="primary" icon={<PlusOutlined />} onClick={() => handleButton(item.id)}>Add</Button>]}>
+              <List.Item actions={[<Button type="primary" icon={<PlusOutlined />} onClick={() => handleButton(item)}>Add</Button>]}>
                 <List.Item.Meta
-                  avatar={<img src={item.product_image} alt={item.product_name} style={{ height: '4rem' }} />}
+                  avatar={<img src={item.product_image} alt={item.product_name} style={{ height: '4rem', maxWidth: '4rem' }} />}
                   title={<Title level={4}>{item.product_name}</Title>}
                   description={<Text>qty: per item, per box </Text>}
                 />
@@ -63,6 +63,6 @@ const mapStateToProps = state => ({
   groceryItem: state.grocerylist.inventory
 })
 const mapDispatchToProps = dispatch => ({
-  addItem: (id) => dispatch(addItem(id))
+  addItem: (item) => dispatch(addItem(item))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ItemList)

@@ -12,12 +12,10 @@ const grocerylist = (state = initialState, action = {}) => {
         ...state,
         goCart: [
           ...state.goCart,
-          {
-            id: action.payload.id
-          }
+          action.payload.item
         ],
         inventory: [
-          ...state.inventory.map(item => item.id === action.payload.id ? { ...item, selected: true } : item)
+          ...state.inventory.map(item => item.id === action.payload.item.id ? { ...item, selected: true } : item)
         ]
       }
     case 'DELETE_ITEM':

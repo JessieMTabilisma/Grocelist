@@ -2,7 +2,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Empty, Row, Col, List } from 'antd'
+import { Empty, Row, Col, List, Select } from 'antd'
+import Counter from '../../components/Counter'
 import styles from './CartList.module.css'
 
 const CartList = (props) => {
@@ -27,10 +28,22 @@ const CartList = (props) => {
           itemLayout="horizontal"
           dataSource={props.inventoryInCart}
           renderItem={item => item.selected === true ? (
-            <List.Item className={styles.list__item}>
+            <List.Item actions={[<Counter />]} className={styles.list__item}>
               <List.Item.Meta
                 avatar={<img src={item.product_image} alt={item.product_name} className={styles.image__item} />}
                 title={<h4 className={styles.title__item}>{item.product_name}</h4>}
+                description={<Row>
+                  <Col xs={24}>
+                    <span className={styles.price__item}>₱900</span>
+                  </Col>
+                  <Col xs={24}>
+                    <Select defaultValue="per item">
+                      <Select.Option value="per item">per item</Select.Option>
+                      <Select.Option value="per pack">per pack</Select.Option>
+                      <Select.Option value="per box">per box</Select.Option>
+                    </Select>
+                  </Col>
+                </Row>}
               />
             </List.Item>
           ) : null}
@@ -42,6 +55,7 @@ const CartList = (props) => {
 
 const mapStateToProps = state => ({
   goCart: state.grocerylist.goCart,
-  inventoryInCart: state.grocerylist.inventory
+  inventoryInCart: state.grocerylist.inventory,
+  counter: state.itemcount
 })
 export default connect(mapStateToProps, null)(CartList)
