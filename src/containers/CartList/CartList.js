@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { Empty, Row, Col, List, Select } from 'antd'
 import Counter from '../../components/Counter'
 import styles from './CartList.module.css'
+import PriceSwitcher from '../../components/PriceSwitcher'
 
 const CartList = (props) => {
   return (
@@ -26,27 +27,17 @@ const CartList = (props) => {
       </Col> : <Col xs={24}>
         <List
           itemLayout="horizontal"
-          dataSource={props.inventoryInCart}
-          renderItem={item => item.selected === true ? (
-            <List.Item actions={[<Counter />]} className={styles.list__item}>
+          dataSource={props.goCart}
+          renderItem={item =>
+            // eslint-disable-next-line react/jsx-key
+            (<List.Item actions={[<Counter count={item.quantity} />]} className={styles.list__item}>
               <List.Item.Meta
                 avatar={<img src={item.product_image} alt={item.product_name} className={styles.image__item} />}
                 title={<h4 className={styles.title__item}>{item.product_name}</h4>}
-                description={<Row>
-                  <Col xs={24}>
-                    <span className={styles.price__item}>₱900</span>
-                  </Col>
-                  <Col xs={24}>
-                    <Select defaultValue="per item">
-                      <Select.Option value="per item">per item</Select.Option>
-                      <Select.Option value="per pack">per pack</Select.Option>
-                      <Select.Option value="per box">per box</Select.Option>
-                    </Select>
-                  </Col>
-                </Row>}
+                description={<PriceSwitcher price={item} />}
               />
-            </List.Item>
-          ) : null}
+            </List.Item>)
+          }
         />
       </Col>}
     </Row>
@@ -55,7 +46,6 @@ const CartList = (props) => {
 
 const mapStateToProps = state => ({
   goCart: state.grocerylist.goCart,
-  inventoryInCart: state.grocerylist.inventory,
   counter: state.itemcount
 })
 export default connect(mapStateToProps, null)(CartList)

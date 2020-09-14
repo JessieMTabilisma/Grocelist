@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Row, Col, Button } from 'antd'
+import { Row, Col, Button, InputNumber } from 'antd'
 import { incrementItem, decrementItem } from '../actions'
 
 const Counter = (props) => {
@@ -11,7 +11,7 @@ const Counter = (props) => {
         <Button onClick={() => props.decrement()}>-</Button>
       </Col>
       <Col>
-        {props.counter}
+        <InputNumber min={1} max={10} defaultValue={props.count} />
       </Col>
       <Col>
         <Button onClick={() => props.increment()}>
@@ -21,13 +21,9 @@ const Counter = (props) => {
     </Row>
   )
 }
-const mapStateToProps = state => ({
-  counter: state.cartlist.count
-})
-
 const mapDispatchToProps = dispatch => ({
   increment: () => dispatch(incrementItem),
   decrement: () => dispatch(decrementItem)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter)
+export default connect(null, mapDispatchToProps)(Counter)
