@@ -18,6 +18,23 @@ const grocerylist = (state = initialState, action = {}) => {
           ...state.inventory.map(item => item.id === action.payload.item.id ? { ...item, selected: true } : item)
         ]
       }
+    case 'INCREMENT':
+      return {
+        ...state,
+        goCart: state.goCart.map(item => item.id === action.payload.id ? { ...item, quantity: item.quantity + 1 } : item)
+      }
+    case 'DECREMENT':
+      return {
+        ...state,
+        goCart: state.goCart.map(item =>
+          item.id === action.payload.id
+            ? {
+              ...item,
+              quantity: item.quantity !== 1 ? item.quantity - 1 : 1
+            }
+            : item
+        )
+      }
     case 'DELETE_ITEM':
       return {
         ...state,
