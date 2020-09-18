@@ -3,18 +3,16 @@ import { Button, Row, Col, Typography } from 'antd'
 import styles from './CartSummary.module.css'
 
 const CartSummary = props => {
-  const totalPrice = props.items.map(item => {
-    // console.log(...item.quantity * ...item.price)
-    const subtotal = item.price * item.quantity
-
-    return subtotal
-  })
+  const totalPrice = props.items.reduce((sum, i) => (
+    sum += i.quantity * i.price
+  ), 0)
   return (
     <Row className={styles.cart_summary}>
       <Col xs={12}>
-        <Typography>
-              Total price:
-          <Typography.Text strong="true">{totalPrice}</Typography.Text>
+        <Typography className={styles.vertical}>
+              Total price: 
+          <Typography.Text className={styles.total__price}>
+₱ {totalPrice}</Typography.Text>
         </Typography>
       </Col>
       <Col xs={12} style={{ textAlign: 'right' }}>
