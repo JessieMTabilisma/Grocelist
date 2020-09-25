@@ -6,8 +6,8 @@ const ModalForm = ({ visible, onUpdate, onCancel }) => {
   return (
     <Modal
       visible={visible}
-      title="Edit"
-      okText="Update"
+      title="Save your List"
+      okText="Create and Save"
       cancelText="Cancel"
       onCancel={onCancel}
       onOk={() => {
@@ -27,7 +27,14 @@ const ModalForm = ({ visible, onUpdate, onCancel }) => {
         layout="vertical"
       >
         <Form.Item
-          name="item"
+          label="Name"
+          name="list_name"
+          rules={[
+            {
+              required: true,
+              message: 'Please input list name to save!'
+            }
+          ]}
         >
           <Input />
         </Form.Item>

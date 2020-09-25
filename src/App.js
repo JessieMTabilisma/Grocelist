@@ -4,6 +4,7 @@ import ItemList from './containers/ItemList'
 import { Row, Col } from 'antd'
 import Header from './components/Header'
 import MyList from './containers/CartList/CartList'
+import CartSummary from './containers/CartSummary/CartSummary'
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,6 +26,9 @@ function App () {
           </Route>
           <Route path="/mylist">
             <MyList />
+          </Route>
+          <Route path="/save-list">
+            <CartSummary />
           </Route>
         </Switch>
       </div>

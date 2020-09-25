@@ -1,10 +1,11 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Empty, Row, Col, List, Button, Typography } from 'antd'
+import { Empty, Row, Col, List, Typography } from 'antd'
 import styles from './CartList.module.css'
-import CartSummary from '../../components/CartSummary/CartSummary'
+import CartSummary from '../../components/CartFooter/CartFooter'
 import { incrementItem, decrementItem } from '../../actions'
 import CartAction from '../../components/CartAction/CartAction'
 
@@ -33,16 +34,16 @@ const CartList = (props) => {
             itemLayout="horizontal"
             dataSource={props.goCart}
             renderItem={item =>
-            // eslint-disable-next-line react/jsx-key
-              (<List.Item actions={[<CartAction increment={props.incrementItem} decrement={props.decrementItem} item={item} />]} className={styles.list__item}>
-                <List.Item.Meta
-                  avatar={<img src={item.product_image} alt={item.product_name} className={styles.image__item} />}
-                  title={<h4 className={styles.title__item}>{item.product_name}</h4>}
-                  description={<Typography strong>
+              (
+                <List.Item actions={[<CartAction increment={props.incrementItem} decrement={props.decrementItem} item={item} />]} className={styles.list__item}>
+                  <List.Item.Meta
+                    avatar={<img src={item.product_image} alt={item.product_name} className={styles.image__item} />}
+                    title={<h4 className={styles.title__item}>{item.product_name}</h4>}
+                    description={<Typography strong="true">
                     ₱ {item.price}
-                  </Typography>}
-                />
-              </List.Item>)
+                    </Typography>}
+                  />
+                </List.Item>)
             }
           />
         </Col>
@@ -55,7 +56,7 @@ const CartList = (props) => {
 }
 
 const mapStateToProps = state => ({
-  goCart: state.grocerylist.goCart,
+  goCart: state.grocerylist.goCart
 })
 
 const mapDispatchToProps = dispatch => ({
