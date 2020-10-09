@@ -31,3 +31,24 @@ export const decrementItem = id => ({
   type: 'DECREMENT',
   payload: { id }
 })
+
+// Auth
+export const signupSuccess = (credentials) => ({
+  type: 'SIGNUP_SUCCESS',
+  payload: { credentials }
+})
+
+export const signupError = (error) => ({
+  type: 'SIGNUP_ERROR',
+  payload: { error }
+})
+
+export const signinSuccess = (credentials) => ({
+  type: 'SIGNIN_SUCCESS',
+  payload: { credentials }
+})
+
+export const signinError = (error) => ({
+  type: 'SIGNIN_ERROR',
+  payload: { error }
+})

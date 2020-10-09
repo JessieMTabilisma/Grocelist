@@ -26,32 +26,18 @@ const CartSummary = props => {
     </Row>
   ))
   const totalPrice = subTotalPrice + totalTax
-
+  const onFinish = values => {
+    const savedlist = {
+      list_name: values.list_name,
+      date_grocery: values.date_grocery,
+      total_price: totalPrice,
+      total_items: totalItems
+    }
+    console.log(savedlist)
+  }
   return (
     <Space direction="horizontal" style={{ marginTop: '3rem' }}>
-      <Form>
-        <Form.Item label="Name your list"
-          name="list_name"
-          rules={[
-            {
-              required: true,
-              message: 'Please input the name of the list!'
-            }
-          ]}>
-          <Input size="large" />
-        </Form.Item>
-        <Form.Item>
-          <Row>
-            <Col xs={24}>
-              <Typography>
-                        Select date for this grocery list
-              </Typography>
-            </Col>
-            <Col xs={24}>
-              <DatePicker size="large" style={{ display: 'block', width: '100%' }} />
-            </Col>
-          </Row>
-        </Form.Item>
+      <Form onFinish={onFinish}>
         <Form.Item>
           <Row>
             <Col xs={24}><Typography.Title level={3}>Summary</Typography.Title></Col>
@@ -69,10 +55,26 @@ const CartSummary = props => {
             </Col>
           </Row>
         </Form.Item>
+        <Form.Item label="Name your list"
+          name="list_name"
+          rules={[
+            {
+              required: true,
+              message: 'Please input the name of the list!'
+            }
+          ]}>
+          <Input size="large" />
+        </Form.Item>
+        <Form.Item name="date_grocery" label="Select date for this grocery">
+          <DatePicker size="large" style={{ display: 'block', width: '100%' }} />
+        </Form.Item>
         <Form.Item>
-          <Row>
+          <Row gutter={[8, 24]} style={{ marginTop: '3rem' }}>
             <Col xs={24}>
-              <Button type="primary" size="large" style={{ width: '100%', position: 'absolute', top: '7rem' }}>Save List</Button>
+              <Button size="large" style={{ width: '100%' }}>Back to Cart</Button>
+            </Col>
+            <Col xs={24}>
+              <Button type="primary" size="large" style={{ width: '100%' }} htmlType="submit">Save List</Button>
             </Col>
           </Row>
         </Form.Item>

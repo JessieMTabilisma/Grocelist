@@ -1,0 +1,14 @@
+.logo__signup {
+    height: 3rem; 
+    margin: 5rem auto;
+}
+.submit__button { 
+    width: 100%;
+}
+.create__button {
+    width: 100%;
+}
+.login__redirect {
+    width:  100%;
+    text-align: center;
+}
