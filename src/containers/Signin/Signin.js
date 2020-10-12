@@ -5,11 +5,13 @@ import Logo from '../../assets/logo.svg'
 import styles from './Signin.module.css'
 import { signin } from '../../services/auth'
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 const Signin = props => {
+  const history = useHistory()
   const onFinish = (values) => {
     console.log('Success:', values)
-    // props.signin(values.email, values.password, () => history.push('/'))
+    props.signin(values.email, values.password, () => history.push('/'))
   }
 
   const onFinishFailed = (errorInfo) => {

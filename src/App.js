@@ -12,6 +12,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
+import PrivateRoute from './components/Hoc/PrivateRoute'
 
 function App () {
   return (
@@ -29,15 +30,15 @@ function App () {
           <Route exact path="/create_account">
             <Signup/>
           </Route>
-          <Route exact path="/">
+          <PrivateRoute exact path="/">
             <Main />
-          </Route>
-          <Route exact path="/mylist">
+          </PrivateRoute>
+          <PrivateRoute exact path="/mylist">
             <MyList />
-          </Route>
-          <Route exact path="/save-list">
+          </PrivateRoute>
+          <PrivateRoute exact path="/save-list">
             <CartSummary />
-          </Route>
+          </PrivateRoute>
         </Switch>
       </div>
     </Router>

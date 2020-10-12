@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Home from '../components/Home/Home'
+import ItemList from './ItemList'
 import Signin from './Signin/Signin'
 
 const Main = props => {
-  console.log(props.auth)
   return (
     <div>
-      {!props.auth.isEmpty ? <Home /> : <Signin />}
+      {!props.auth.isEmpty ? <ItemList /> : <Signin />}
     </div>
   )
 }

@@ -40,15 +40,18 @@ export const signin = (email, password, callback) => async dispatch => {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(data => {
-        if (data.user.emailVerified) {
-          console.log('Check: ', data.user.emailVerified)
-          dispatch(SIGNIN_SUCCESS)
-          callback()
-        } else {
-          console.log('WRONG', data.user.emailVerified)
-          dispatch(SIGNIN_ERROR)
-        }
-      }).catch(() => {
+        // if (data.user.emailVerified) {
+        //   console.log('IF', data.user.emailVerified)
+        //   dispatch(SIGNIN_SUCCESS)
+        //   callback()
+        // } else {
+        //   console.log('ELSE', data.user.emailVerified)
+        //   dispatch(SIGNIN_ERROR)
+        //   console.log('here')
+        // }
+        console.log(data.user.emailVerified)
+      })
+      .catch(() => {
         dispatch(SIGNIN_ERROR)
       })
   } catch (err) {

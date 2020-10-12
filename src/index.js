@@ -9,21 +9,14 @@ import { Provider } from 'react-redux'
 import store from './store'
 // Firebase
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
+import 'firebase-admin'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 import './services/firebase'
 import { createFirestoreInstance } from 'redux-firestore'
-
-// const firebaseConfig = {
-//   apiKey: 'AIzaSyAkui_k05CX87LG_aAie4g8cO0qniVCXI8',
-//   authDomain: 'grocelist-85fd7.firebaseapp.com',
-//   databaseURL: 'https://grocelist-85fd7.firebaseio.com',
-//   projectId: 'grocelist-85fd7',
-//   storageBucket: 'grocelist-85fd7.appspot.com',
-//   messagingSenderId: '102374602116',
-//   appId: '1:102374602116:web:de221f4563663389c8d9d1'
-// }
+import { useSelector } from 'react-redux'
+import { isLoaded } from 'react-redux-firebase'
 
 const rrfConfig = {
   userProfile: 'users',
@@ -40,10 +33,18 @@ const rrfProps = {
   createFirestoreInstance // <- needed if using firestore
 }
 
+const AuthIsLoaded = ({ children }) => {
+  const auth = useSelector(state => state.firebase.auth)
+  console.log(auth)
+  if (!isLoaded(auth)) return <div>splash screen...</div>
+  return children
+}
 ReactDOM.render(
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
-      <App />
+      <AuthIsLoaded>
+        <App />
+      </AuthIsLoaded>
     </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById('root')
