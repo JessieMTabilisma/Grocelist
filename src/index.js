@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
 import store from './store'
 // Firebase
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
+import { ReactReduxFirebaseProvider, isLoaded } from 'react-redux-firebase'
 import 'firebase-admin'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
@@ -16,7 +16,6 @@ import 'firebase/firestore'
 import './services/firebase'
 import { createFirestoreInstance } from 'redux-firestore'
 import { useSelector } from 'react-redux'
-import { isLoaded } from 'react-redux-firebase'
 
 const rrfConfig = {
   userProfile: 'users',

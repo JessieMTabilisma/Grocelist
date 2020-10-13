@@ -1,17 +1,16 @@
 import React from 'react'
 import { Row, Form, Input, Button, Col, Checkbox } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useHistory, Redirect } from 'react-router-dom'
 import Logo from '../../assets/logo.svg'
 import styles from './Signin.module.css'
 import { signin } from '../../services/auth'
 import { connect } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 
 const Signin = props => {
-  const history = useHistory()
+  let history = useHistory()
   const onFinish = (values) => {
     console.log('Success:', values)
-    props.signin(values.email, values.password, () => history.push('/'))
+    props.signin(values.email, values.password, () => <Redirect to="/"/>)
   }
 
   const onFinishFailed = (errorInfo) => {

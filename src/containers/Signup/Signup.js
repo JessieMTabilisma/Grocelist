@@ -1,15 +1,16 @@
 import React from 'react'
 import { Row, Form, Input, Button, Col, Typography } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Logo from '../../assets/logo.svg'
 import styles from './Signup.module.css'
 import { connect } from 'react-redux'
 import { signup } from '../../services/auth'
 
 const Signup = props => {
+  let history = useHistory()
   const onFinish = (values) => {
     console.log('Success:', values)
-    props.signup(values.email, values.password)
+    props.signup(values.email, values.password, () => history.push('/login'))
   }
 
   const onFinishFailed = (errorInfo) => {
@@ -75,7 +76,7 @@ const Signup = props => {
 
 // })
 const mapDispatchToProps = dispatch => ({
-  signup: (email, password) => dispatch(signup(email, password))
+  signup: (email, password, callback) => dispatch(signup(email, password, callback))
 })
 
 export default connect(
