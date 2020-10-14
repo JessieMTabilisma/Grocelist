@@ -3,9 +3,12 @@ Plan, Budget, List your groceries
 
 p: This is created to provide ease in planning, budgetting grocery items. It has a features where you can save your list as a template to used it again in the future. Its a simple app that is build with modern technological stack. Its built with Redux a state management library, and React a javascript Ui library. For Authentication I use Firebase and for serveless function I use Firebase services.
 
-##Features
+##MVP - Features
+- Authentication
 - User Management
 - Adding Items to the list
+- Saving List as a Preset
+- Sharing Preset to Social Media
 - Dynamic Search
 - Static Search
 
