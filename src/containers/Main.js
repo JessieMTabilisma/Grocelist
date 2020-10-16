@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import ItemList from './ItemList'
+import ItemList from './Itemlist/Itemlist'
 import Signin from './Signin/Signin'
 
 const Main = props => {

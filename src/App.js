@@ -2,8 +2,7 @@ import React from 'react'
 import './App.css'
 import Main from './containers/Main'
 import { Row, Col } from 'antd'
-import Header from './components/Header'
-import MyList from './containers/CartList/CartList'
+import Header from './components/Header/Header'
 import CartSummary from './containers/CartSummary/CartSummary'
 import Login from './containers/Signin/Signin'
 import Signup from './containers/Signup/Signup'
@@ -18,11 +17,6 @@ function App () {
   return (
     <Router>
       <div className="App">
-        {/* <Row gutter={[8, 32]}>
-          <Col xs={24}>
-            <Header />
-          </Col>
-        </Row> */}
         <Switch>
           <Route exact path="/login">
             <Login />
@@ -40,11 +34,6 @@ function App () {
               </PrivateRoute>
             </Col>
             <Col xs={24}>
-              <PrivateRoute exact path="/mylist">
-                <MyList />
-              </PrivateRoute>
-            </Col>
-            <Col>
               <PrivateRoute exact path="/save-list">
                 <CartSummary />
               </PrivateRoute>

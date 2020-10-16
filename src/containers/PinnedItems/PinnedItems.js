@@ -4,12 +4,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Empty, Row, Col, List, Typography } from 'antd'
-import styles from './CartList.module.css'
+import styles from './PinnedItems.module.css'
 import CartSummary from '../../components/CartFooter/CartFooter'
 import { incrementItem, decrementItem } from '../../actions'
 import CartAction from '../../components/CartAction/CartAction'
 
-const CartList = (props) => {
+const PinnedItems = (props) => {
   return (
     <div>
       {props.goCart.length === 0 ? <Row>
@@ -63,4 +63,4 @@ const mapDispatchToProps = dispatch => ({
   incrementItem: (id) => dispatch(incrementItem(id)),
   decrementItem: (id) => dispatch(decrementItem(id))
 })
-export default connect(mapStateToProps, mapDispatchToProps)(CartList)
+export default connect(mapStateToProps, mapDispatchToProps)(PinnedItems)
