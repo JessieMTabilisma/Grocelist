@@ -18,15 +18,19 @@ const Itemlist = (props) => {
   ])
 
   const data = useSelector(({ firestore: { ordered: { products } } }) => products)
-  useEffect(() => {
-    if (isLoaded(data)) {
-      setList(data)
-    }
-  }, [data])
   const handleButton = item => {
     props.addItem(item)
     return firestore.collection('pinned_items').add(item)
   }
+  useEffect(() => {
+    if (isLoaded(data)) {
+      setList(
+        data.filter((item) =>
+          item.product_name.toLowerCase().includes(search.toLowerCase())
+        )
+      )
+    }
+  }, [search, data])
 
   const suffix = (
     <AudioOutlined
@@ -36,9 +40,6 @@ const Itemlist = (props) => {
       }}
     />
   )
-  const filteredItems = props.groceryItem.filter(item => {
-    return item.product_name.toLowerCase().includes(search.toLowerCase())
-  })
   return (
     <div className={style.itemlist}>
       <Tabs defaultActiveKey="1">

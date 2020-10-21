@@ -17,7 +17,7 @@ const Signin = props => {
     console.log('Failed:', errorInfo)
   }
   return (
-    <div>
+    <div className={styles.login}>
       <Row>
         <img src={Logo} alt="Grocelist" className={styles.logo__login} />
       </Row>
