@@ -4,7 +4,7 @@ import { connect, useSelector } from 'react-redux'
 import { List, Typography, Button, Row, Col, Input, Tabs } from 'antd'
 import { addItem } from '../../actions'
 import { AudioOutlined, PlusOutlined } from '@ant-design/icons'
-import { useFirestoreConnect, useFirestore, isLoaded, isEmpty } from 'react-redux-firebase'
+import { useFirestoreConnect, useFirestore, isLoaded } from 'react-redux-firebase'
 import PinnedItems from '../PinnedItems/PinnedItems'
 import style from './Itemlist.module.css'
 
@@ -20,7 +20,7 @@ const Itemlist = (props) => {
   const data = useSelector(({ firestore: { ordered: { products } } }) => products)
   const handleButton = item => {
     props.addItem(item)
-    return firestore.collection('pinned_items').add(item)
+    return firestore.collection('pinnedItems').add(item)
   }
   useEffect(() => {
     if (isLoaded(data)) {

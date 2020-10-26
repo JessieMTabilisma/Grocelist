@@ -1,18 +1,32 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { connect, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Empty, Row, Col, List, Typography } from 'antd'
 import styles from './PinnedItems.module.css'
 import CartSummary from '../../components/CartFooter/CartFooter'
 import { incrementItem, decrementItem } from '../../actions'
 import CartAction from '../../components/CartAction/CartAction'
+import { useFirestoreConnect, useFirestore, isLoaded } from 'react-redux-firebase'
 
 const PinnedItems = (props) => {
+  // const firestore = useFirestore()
+  const [pinitems, setPin] = useState([])
+  useFirestoreConnect([
+    { collection: 'pinnedItems' }
+  ])
+  const data = useSelector(({ firestore: { ordered: { pinnedItems } } }) => pinnedItems)
+
+  useEffect(() => {
+    if (isLoaded(data)) {
+      setPin(data)
+    }
+  }, [data])
+  console.log(pinitems)
   return (
     <div>
-      {props.goCart.length === 0 ? <Row>
+      {pinitems === 0 ? <Row>
         <Col span={24} style={{ marginTop: '10rem ' }}>
           <Empty
             image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
@@ -32,7 +46,7 @@ const PinnedItems = (props) => {
         <Col xs={24}>
           <List
             itemLayout="horizontal"
-            dataSource={props.goCart}
+            dataSource={pinitems}
             renderItem={item =>
               (
                 <List.Item actions={[<CartAction increment={props.incrementItem} decrement={props.decrementItem} item={item} />]} className={styles.list__item}>
