@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 import { connect, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -8,10 +6,9 @@ import styles from './PinnedItems.module.css'
 import CartSummary from '../../components/CartFooter/CartFooter'
 import { incrementItem, decrementItem } from '../../actions'
 import CartAction from '../../components/CartAction/CartAction'
-import { useFirestoreConnect, useFirestore, isLoaded } from 'react-redux-firebase'
+import { useFirestoreConnect, isLoaded } from 'react-redux-firebase'
 
 const PinnedItems = (props) => {
-  // const firestore = useFirestore()
   const [pinitems, setPin] = useState([])
   useFirestoreConnect([
     { collection: 'pinnedItems' }
@@ -23,7 +20,6 @@ const PinnedItems = (props) => {
       setPin(data)
     }
   }, [data])
-  console.log(pinitems)
   return (
     <div>
       {pinitems === 0 ? <Row>
