@@ -58,7 +58,7 @@ const PinnedItems = (props) => {
           />
         </Col>
         <Col xs={24} className={styles.cart__summary}>
-          <CartSummary items={props.goCart} />
+          <CartSummary items={pinitems} />
         </Col>
       </Row>}
     </div>
