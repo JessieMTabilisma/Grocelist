@@ -19,8 +19,13 @@ const Itemlist = (props) => {
 
   const data = useSelector(({ firestore: { ordered: { products } } }) => products)
   const handleButton = item => {
-    props.addItem(item)
-    return firestore.collection('pinnedItems').add(item)
+    console.log(item)
+    const addItem = {
+      quantity: 1,
+      pinnedStatus: true
+    }
+    console.log(addItem)
+    return firestore.collection('products').doc(item.id).update(addItem)
   }
   useEffect(() => {
     if (isLoaded(data)) {
@@ -43,7 +48,7 @@ const Itemlist = (props) => {
   return (
     <div className={style.itemlist}>
       <Tabs defaultActiveKey="1">
-        <Tabs.TabPane tab="Grocery List" key="1">
+        <Tabs.TabPane tab="Grocery List" key="1" forceRender="true">
           <Row gutter={[8, 32]}>
             <Col xs={24}>
               <Input

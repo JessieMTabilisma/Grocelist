@@ -1,14 +1,12 @@
 import React from 'react'
 import Logo from '../../assets/logo.svg'
 import { Row, Col } from 'antd'
-import { Link, useHistory } from 'react-router-dom'
-import { BarsOutlined } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
 import { signout } from '../../services/auth'
 import { connect } from 'react-redux'
 import style from './Header.module.css'
 
 const Header = (props) => {
-  const history = useHistory()
   return (
     <header className={style.header}>
       <Row>

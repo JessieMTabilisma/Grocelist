@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { connect, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Empty, Row, Col, List, Typography } from 'antd'
 import styles from './PinnedItems.module.css'
-import CartSummary from '../../components/CartFooter/CartFooter'
-import { incrementItem, decrementItem } from '../../actions'
+import CartFooter from '../../components/CartFooter/CartFooter'
 import CartAction from '../../components/CartAction/CartAction'
 import { useFirestoreConnect, isLoaded } from 'react-redux-firebase'
 
 const PinnedItems = (props) => {
   const [pinitems, setPin] = useState([])
   useFirestoreConnect([
-    { collection: 'pinnedItems' }
+    { collection: 'products', where: ['pinnedStatus', '==', true] }
   ])
-  const data = useSelector(({ firestore: { ordered: { pinnedItems } } }) => pinnedItems)
+  const data = useSelector(({ firestore: { ordered: { products } } }) => products)
 
   useEffect(() => {
     if (isLoaded(data)) {
@@ -39,7 +38,7 @@ const PinnedItems = (props) => {
           </Empty>
         </Col>
       </Row> : <Row>
-        <Col xs={24}>
+        <Col xs={16}>
           <List
             itemLayout="horizontal"
             dataSource={pinitems}
@@ -57,20 +56,12 @@ const PinnedItems = (props) => {
             }
           />
         </Col>
-        <Col xs={24} className={styles.cart__summary}>
-          <CartSummary items={pinitems} />
+        <Col xs={8} className={styles.cart__summary}>
+          <CartFooter items={pinitems} />
         </Col>
       </Row>}
     </div>
   )
 }
 
-const mapStateToProps = state => ({
-  goCart: state.grocerylist.goCart
-})
-
-const mapDispatchToProps = dispatch => ({
-  incrementItem: (id) => dispatch(incrementItem(id)),
-  decrementItem: (id) => dispatch(decrementItem(id))
-})
-export default connect(mapStateToProps, mapDispatchToProps)(PinnedItems)
+export default PinnedItems

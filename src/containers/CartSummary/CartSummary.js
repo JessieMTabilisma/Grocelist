@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Row, Form, Col, Input, Typography, DatePicker, Space, Divider, Button } from 'antd'
+import { Row, Form, Col, Input, Typography, DatePicker, Divider, Button } from 'antd'
 import style from './CartSummary.module.css'
 import { useFirestore } from 'react-redux-firebase'
 
