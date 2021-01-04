@@ -4,7 +4,9 @@ import styles from './CartFooter.module.css'
 import { useFirestore } from 'react-redux-firebase'
 
 const CartSummary = props => {
+  const [loading, setLoading] = React.useState(false)
   const firestore = useFirestore()
+  const [form] = Form.useForm();
   const subTotalPrice = props.items.reduce((sum, i) => (
     sum += i.quantity * i.price
   ), 0)
@@ -31,22 +33,37 @@ const CartSummary = props => {
   const onFinish = values => {
     const savedlist = {
       list_name: values.list_name,
-      // date_grocery: values.date_grocery,
+      date_grocery: values.date_grocery._d,
       total_price: subTotalPrice,
-      total_items: totalItems
+      total_items: totalItems,
+      items: props.items
     }
-    return firestore.collection('pinned_items').add(savedlist)
+    return (
+      setLoading(true),
+      setTimeout(() => {
+        firestore.collection('savedList').doc().set(savedlist).then(
+          props.items.map(data => firestore.collection('pinnedItems').doc(data.id).delete().then(() => form.resetFields()))
+        )
+        setLoading(false)
+      }, 1000)
+    )
   }
   return (
-    <Form onFinish={onFinish} layout="vertical" className={styles.cart_summary}>
+    <Form form={form} onFinish={onFinish} layout="vertical" className={styles.cart_summary}>
       <Form.Item>
         <Typography.Title level={3}>Summary</Typography.Title>
         {totalSummary}
         <Divider />
-        <Typography>
+        <Row>
+          <Col xs={12}>
+            <Typography>
           Total Price
-        </Typography>
-        <Typography.Title level={4}>{totalPrice}</Typography.Title>
+            </Typography>
+          </Col>
+          <Col xs={12} style={{ textAlign: 'right' }}>
+            <Typography.Title level={4}>{totalPrice}</Typography.Title>
+          </Col>
+        </Row>
       </Form.Item>
       <Form.Item label="Name your list"
         name="list_name"
@@ -56,15 +73,15 @@ const CartSummary = props => {
             message: 'Please input the name of the list!'
           }
         ]}>
-        <Input size="large" />
+        <Input size="large" className={styles.input__form}/>
       </Form.Item>
       <Form.Item name="date_grocery" label="Select date for this grocery">
-        <DatePicker size="large" style={{ display: 'block', width: '100%' }} />
+        <DatePicker size="large" style={{ display: 'block', width: '100%' }} className={styles.input__form} />
       </Form.Item>
       <Form.Item>
         <Row gutter={[8, 24]}>
           <Col xs={24}>
-            <Button type="primary" size="large" style={{ width: '100%' }} htmlType="submit">Save List</Button>
+            <Button type="primary" size="large" style={{ width: '100%' }} className={styles.input__form} htmlType="submit">Save List</Button>
           </Col>
         </Row>
       </Form.Item>

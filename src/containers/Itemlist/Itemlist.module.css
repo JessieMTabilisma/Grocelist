@@ -1,3 +1,13 @@
 .itemlist{
     padding: 0rem 1rem 0rem 1rem;
 }
+.searchBar{
+    width: 60%;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+.addButton{
+    padding: 0.3rem 1rem 0.3rem 1rem;
+    border-radius: 5px;
+}

@@ -6,8 +6,8 @@ const ModalForm = ({ visible, onUpdate, onCancel }) => {
   return (
     <Modal
       visible={visible}
-      title="Save your List"
-      okText="Create and Save"
+      title="Edit list name"
+      okText="Save"
       cancelText="Cancel"
       onCancel={onCancel}
       onOk={() => {
@@ -27,7 +27,7 @@ const ModalForm = ({ visible, onUpdate, onCancel }) => {
         layout="vertical"
       >
         <Form.Item
-          label="Name"
+          label="New name"
           name="list_name"
           rules={[
             {
@@ -36,7 +36,7 @@ const ModalForm = ({ visible, onUpdate, onCancel }) => {
             }
           ]}
         >
-          <Input />
+          <Input style={{ padding: '0.5rem', borderRadius: '5px' }}/>
         </Form.Item>
       </Form>
     </Modal>

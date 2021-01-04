@@ -1,31 +1,13 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
-import { connect, useSelector } from 'react-redux'
-import { List, Typography, Button, Row, Col, Input, Tabs } from 'antd'
-import { addItem } from '../../actions'
-import { SearchOutlined, PlusOutlined } from '@ant-design/icons'
+import { List, Typography, Button, Row, Col, Input } from 'antd'
+import { SearchOutlined } from '@ant-design/icons'
 import { useFirestoreConnect, useFirestore, isLoaded } from 'react-redux-firebase'
 import style from './Itemlist.module.css'
 
-const Itemlist = (props) => {
-  const firestore = useFirestore()
+const SearchBar = (data) => {
   const [search, setSearch] = useState('')
-  const [list, setList] = useState([])
   const { Title, Text } = Typography
-  useFirestoreConnect([
-    { collection: 'inventory' },
-    { collection: 'pinnedItems' }
-  ])
-  const data = useSelector(({ firestore: { ordered: { inventory } } }) => inventory)
-  const handleButton = item => {
-    const addItem = {
-      price: item.price,
-      product_image: item.product_image,
-      product_name: item.product_name,
-      quantity: 1
-    }
-    return firestore.collection('pinnedItems').doc(item.id).set(addItem)
-  }
   useEffect(() => {
     if (isLoaded(data)) {
       setList(
@@ -35,6 +17,7 @@ const Itemlist = (props) => {
       )
     }
   }, [search, data])
+  console.log(list)
   const suffix = (
     <SearchOutlined style={{
       fontSize: 16,
@@ -76,12 +59,4 @@ const Itemlist = (props) => {
     </div>
   )
 }
-
-const mapStateToProps = state => ({
-  groceryItem: state.grocerylist.inventory,
-  inventory: state.firestore
-})
-const mapDispatchToProps = dispatch => ({
-  addItem: (item) => dispatch(addItem(item))
-})
-export default connect(mapStateToProps, mapDispatchToProps)(Itemlist)
+export default SearchBar

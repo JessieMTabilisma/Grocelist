@@ -1,11 +1,7 @@
 .cart_summary {
     color: white;
-    bottom: 0;
-    left: 0;
-    width: 100%;
     padding: 2rem 3rem;
-    /* box-shadow: 0px 0 10px rgba(0, 0, 0, 0.2); */
-    background-color: white;
+    width: 100%;
 }
 .total__price {
     margin-left: 0.5rem;
@@ -18,4 +14,8 @@
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+.input__form{
+    padding: 0.5rem;
+    border-radius: 5px;
 }

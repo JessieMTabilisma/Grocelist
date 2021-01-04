@@ -1,13 +1,14 @@
 import React from 'react'
-import { Row, Col, Button, Typography } from 'antd'
+import { Row, Col, Button, Typography, Popconfirm, notification } from 'antd'
 import { DeleteFilled } from '@ant-design/icons'
 import styles from './CartAction.module.css'
 import { useFirestore } from 'react-redux-firebase'
 
 const CartAction = ({ item }) => {
   const firestore = useFirestore()
-
-  const pinnedRef = firestore.collection('products')
+  const [visible, setVisible] = React.useState(false)
+  const [confirmLoading, setConfirmLoading] = React.useState(false)
+  const pinnedRef = firestore.collection('pinnedItems')
   const increaseQuantity = id => {
     pinnedRef.doc(id).update({
       quantity: firestore.FieldValue.increment(1)
@@ -22,16 +23,32 @@ const CartAction = ({ item }) => {
       })
     }
   }
-  const removedToCart = id => {
-    pinnedRef.doc(id)
-      .delete()
-      .then(() => {
+  const handleOk = (id) => {
+    setConfirmLoading(true)
+    setTimeout(() => {
+      pinnedRef.doc(id).delete().then(() => {
         console.log('Deleted Succesfully')
       })
-      .catch(err => {
-        console.log(err)
-      })
-    console.log(id)
+        .catch(err => {
+          console.log(err)
+        })
+      setVisible(false)
+      setConfirmLoading(false)
+      openNotification('topRight')
+    }, 2000)
+  }
+
+  const handleCancel = () => {
+    setVisible(false)
+  }
+  const showPopconfirm = () => {
+    setVisible(true)
+  }
+  const openNotification = placement => {
+    notification.info({
+      message: 'Succesfully deleted item ',
+      placement
+    })
   }
   return (
     <div>
@@ -45,11 +62,14 @@ const CartAction = ({ item }) => {
         <Col>
           <Button type="primary" onClick={() => increaseQuantity(item.id)}>+</Button>
         </Col>
-      </Row>
-      <Row>
-        <Col xs={24}>
-          <DeleteFilled onClick={() => removedToCart(item.id)} />
-        </Col>
+        <Popconfirm
+          title="Are you sure you want to delete this item ?"
+          visible={visible}
+          onConfirm={() => handleOk(item.id)}
+          okButtonProps={{ loading: confirmLoading }}
+          onCancel={handleCancel}>
+          <DeleteFilled className={styles.deleteAction} onClick={showPopconfirm} />
+        </Popconfirm>
       </Row>
     </div>
   )

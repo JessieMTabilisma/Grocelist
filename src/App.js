@@ -1,9 +1,10 @@
 import React from 'react'
 import './App.css'
 import Main from './containers/Main'
-import { Row, Col } from 'antd'
+import { Row, Col, Typography } from 'antd'
 import Header from './components/Header/Header'
-import CartSummary from './containers/CartSummary/CartSummary'
+import PinnedItems from './containers/PinnedItems/PinnedItems'
+import Mylist from './containers/Mylist/Mylist'
 import Login from './containers/Signin/Signin'
 import Signup from './containers/Signup/Signup'
 import {
@@ -34,8 +35,13 @@ function App () {
               </PrivateRoute>
             </Col>
             <Col xs={24}>
-              <PrivateRoute exact path="/save-list">
-                <CartSummary />
+              <PrivateRoute exact path="/pinneditems">
+                <PinnedItems />
+              </PrivateRoute>
+            </Col>
+            <Col xs={24}>
+              <PrivateRoute exact path="/yourlist">
+                <Mylist />
               </PrivateRoute>
             </Col>
           </Row>

@@ -32,11 +32,13 @@ const CartSummary = props => {
   const onFinish = values => {
     const savedlist = {
       list_name: values.list_name,
-      // date_grocery: values.date_grocery,
+      date_grocery: values.date_grocery,
       total_price: totalPrice,
-      total_items: totalItems
+      total_items: totalItems,
+      items: props.goCart
     }
-    return firestore.collection('pinned_items').add(savedlist)
+    console.log(savedlist)
+    // return firestore.collection('savedList').add(savedlist)
   }
   return (
     <Form onFinish={onFinish} className={style.cart_summary}>

@@ -1,7 +1,16 @@
 .header{ 
     background-color: white;
-    padding: 1rem;
+    padding: 1.5rem;
 }
 .logo{
-    height: 2rem;
+    height: 3rem;
+}
+.links{
+    display: flex;
+    justify-content: flex-end;
+}
+.link{
+    margin: 20px;
+    font-size: 15px;
+    font-weight: 600;
 }
