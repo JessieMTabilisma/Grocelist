@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import Main from './containers/Main'
-import { Row, Col, Typography } from 'antd'
+import { Row, Col } from 'antd'
 import Header from './components/Header/Header'
 import PinnedItems from './containers/PinnedItems/PinnedItems'
 import Mylist from './containers/Mylist/Mylist'

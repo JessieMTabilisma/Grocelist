@@ -4,7 +4,7 @@ import styles from './CartFooter.module.css'
 import { useFirestore } from 'react-redux-firebase'
 
 const CartSummary = props => {
-  const [loading, setLoading] = React.useState(false)
+  const [, setLoading] = React.useState(false)
   const firestore = useFirestore()
   const [form] = Form.useForm();
   const subTotalPrice = props.items.reduce((sum, i) => (

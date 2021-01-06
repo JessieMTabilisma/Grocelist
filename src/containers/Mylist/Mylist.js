@@ -1,14 +1,14 @@
-
 /* eslint-disable react/jsx-key */
 import React from 'react'
 import { Card, Row, Col, Typography, Empty, Modal, Button, Popconfirm, notification } from 'antd'
-import { EditOutlined, DeleteOutlined, ShareAltOutlined } from '@ant-design/icons'
+import { DeleteOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useFirestore, useFirestoreConnect, isLoaded } from 'react-redux-firebase'
 import styles from './Mylist.module.css'
 import RenderModal from '../../components/RenderModal/RenderModal'
 import EditList from '../../components/EditList'
+// import ShareAction from '../../components/ShareAction/ShareAction'
 
 const Mylist = () => {
   const firestore = useFirestore()
@@ -65,7 +65,7 @@ const Mylist = () => {
           headStyle={{ textTransform: 'uppercase', color: '#8870FF' }}
           className={styles.card}
           actions={[
-            <Button type="link"><ShareAltOutlined key="share"/></Button>,
+            // <ShareAction />,
             <EditList id={data.id}/>,
             <Popconfirm title="Are you sure you want to delete this list ?"
               visible={visible}
@@ -73,7 +73,9 @@ const Mylist = () => {
               okButtonProps={{ loading: confirmLoading, danger: true }}
               okText="YES, DELETE LIST"
               okType="primary"
-              onCancel={handleCancelDelete}><DeleteOutlined key="delete" onClick={showPopconfirm}/></Popconfirm>
+              onCancel={handleCancelDelete}>
+              <Button type="link"><DeleteOutlined key="delete" onClick={showPopconfirm}/></Button>
+            </Popconfirm>
           ]}
           extra={<Button type="link" className={styles.viewButton} onClick={() => showModal(i)}>
             More
@@ -107,10 +109,6 @@ const Mylist = () => {
     setSelectedList(selected)
   }
 
-  const handleOk = () => {
-    setIsModalVisible(false)
-  }
-
   const handleCancel = () => {
     setIsModalVisible(false)
   }
@@ -137,7 +135,11 @@ const Mylist = () => {
         {CardData}
       </Row>
       }
-      <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+      <Modal visible={isModalVisible} width={800} onCancel={handleCancel} footer={[
+        <Button key="back" type="link" onClick={handleCancel}>
+            CLOSE
+        </Button>
+      ]}>
         {/* {RenderModal} */}
         <RenderModal selected={selectedList} list={list} />
       </Modal>

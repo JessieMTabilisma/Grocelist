@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
 import { connect, useSelector } from 'react-redux'
-import { List, Typography, Button, Row, Col, Input, Tabs } from 'antd'
+import { List, Typography, Button, Row, Col, Input } from 'antd'
 import { addItem } from '../../actions'
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons'
 import { useFirestoreConnect, useFirestore, isLoaded } from 'react-redux-firebase'
