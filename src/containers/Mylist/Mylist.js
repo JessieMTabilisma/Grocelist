@@ -15,7 +15,6 @@ const Mylist = () => {
   const [list, setList] = React.useState([])
   const [isModalVisible, setIsModalVisible] = React.useState(false)
   const [selectedList, setSelectedList] = React.useState()
-  const [visible, setVisible] = React.useState(false)
   const [confirmLoading, setConfirmLoading] = React.useState(false)
   useFirestoreConnect([
     { collection: 'savedList' }
@@ -38,14 +37,9 @@ const Mylist = () => {
         .catch(err => {
           console.log(err)
         })
-      setVisible(false)
       setConfirmLoading(false)
       openNotification('topRight')
     }, 2000)
-  }
-
-  const handleCancelDelete = () => {
-    setVisible(false)
   }
   const openNotification = placement => {
     notification.info({
@@ -68,7 +62,6 @@ const Mylist = () => {
               okButtonProps={{ loading: confirmLoading, danger: true }}
               okText="YES, DELETE LIST"
               okType="primary"
-              onCancel={handleCancelDelete}
             >
               <Button type="link"><DeleteOutlined key="delete"/></Button>
             </Popconfirm>
