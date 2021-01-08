@@ -1,5 +1,6 @@
 .pinnedItems {
     padding: 0rem 1rem 0rem 1rem;
+    background-color: rgb(255, 255, 255);
 }
 .list__item { 
     background-color: rgb(250, 250, 250);

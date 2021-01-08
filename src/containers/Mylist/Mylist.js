@@ -47,34 +47,30 @@ const Mylist = () => {
   const handleCancelDelete = () => {
     setVisible(false)
   }
-  const showPopconfirm = () => {
-    setVisible(true)
-  }
   const openNotification = placement => {
     notification.info({
       message: 'Succesfully deleted list',
       placement
     })
   }
-
   const CardData = list.map((data, i) => {
     return (
-      <Col key={data.id} xs={24} md={12} lg={8} xl={6} xxl={4}>
+      <Col key={i} xs={24} md={12} lg={8} xl={6} xxl={4}>
         <Card
           title={data.list_name}
           headStyle={{ textTransform: 'uppercase', color: '#8870FF' }}
           className={styles.card}
           actions={[
-            // <ShareAction />,
             <EditList id={data.id}/>,
-            <Popconfirm title="Are you sure you want to delete this list ?"
-              visible={visible}
+            <Popconfirm
+              title="Are you sure you want to delete this list ?"
               onConfirm={() => handleConfirm(data.id)}
               okButtonProps={{ loading: confirmLoading, danger: true }}
               okText="YES, DELETE LIST"
               okType="primary"
-              onCancel={handleCancelDelete}>
-              <Button type="link"><DeleteOutlined key="delete" onClick={showPopconfirm}/></Button>
+              onCancel={handleCancelDelete}
+            >
+              <Button type="link"><DeleteOutlined key="delete"/></Button>
             </Popconfirm>
           ]}
           extra={<Button type="link" className={styles.viewButton} onClick={() => showModal(i)}>
