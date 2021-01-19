@@ -1,1 +1,6 @@
-@import '~antd/dist/antd.css'
+@import '~antd/dist/antd.css';
+
+.App{
+    min-height: 100vh;
+    max-width: 100vw;
+}   

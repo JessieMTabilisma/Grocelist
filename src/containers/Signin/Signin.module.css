@@ -1,12 +1,37 @@
 .login {
-    padding: 0rem 1rem 0rem 1rem;
+    padding: 0rem 2rem;
+}
+.login_form {
+    padding: 3rem;
+    height: 70%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(248, 248, 248);
+    border-radius: 10px;
+    margin-top: 5rem;
 }
 .logo__login {
-    height: 3rem; margin: 5rem auto;
+    height: 3rem;
 }
 .submit__button { 
-    width: 100%;
+    border-radius: 5px;
+    height: 3rem !important;
+    /* padding: 2rem 0rem 2rem 0rem; */
+    vertical-align: middle;
+    text-align: center;
 }
 .create__acc {
     width: 100%;
+}
+.input__from {
+    padding: 0.8rem;
+    border-radius: 5px;
+}
+.cover{
+    height: 30rem;
+    margin: 5rem auto;
+}
+.logo__text{
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0.5rem 1rem;
 }
