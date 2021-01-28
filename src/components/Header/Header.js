@@ -1,7 +1,7 @@
 import React from 'react'
 import Logo from '../../assets/logo.svg'
 import { Row, Col, Typography, Badge } from 'antd'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import style from './Header.module.css'
 import { useFirestoreConnect, isLoaded } from 'react-redux-firebase'
@@ -24,34 +24,30 @@ const Header = (props) => {
     },
     { id: 2, name: 'Pinned Items', link: '/pinneditems' },
     {
-      id: 3, name: 'Your List', link: 'yourlist'
+      id: 3, name: 'Your List', link: '/yourlist'
     }
   ]
   return (
     <header className={style.header}>
       <Row>
         <Col xs={12}>
-          <Link to="/">
+          <NavLink exact to="/">
             <img src={Logo} alt="Grocelist" className={style.logo} />
-          </Link>
+          </NavLink>
         </Col>
         <Col xs={12} className={style.links}>
           {linkData.map(data => {
             if (data.id === 2) {
               return (
-                <Link to={data.link} key={data.id}>
-                  <Typography className={style.link}>
-                    <Badge count={count} offset={[10, 2]}>{data.name}</Badge>
-                  </Typography>
-                </Link>
+                <NavLink exact to={data.link} key={data.id} activeClassName={style.selected} className={style.link}>
+                  <Badge count={count} offset={[10, 2]}>{data.name}</Badge>
+                </NavLink>
               )
             } else {
               return (
-                <Link to={data.link} key={data.id}>
-                  <Typography className={style.link}>
-                    {data.name}
-                  </Typography>
-                </Link>
+                <NavLink exact to={data.link} key={data.id} activeClassName={style.selected} className={style.link}>
+                  {data.name}
+                </NavLink>
               )
             }
           })}

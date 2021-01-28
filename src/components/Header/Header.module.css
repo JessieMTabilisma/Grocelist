@@ -10,7 +10,11 @@
     justify-content: flex-end;
 }
 .link{
-    margin: 20px;
+    margin: 10px 20px;
     font-size: 15px;
     font-weight: 600;
+    padding: 0.7rem;
+}
+.selected{
+   border-bottom: 3px solid blue;
 }

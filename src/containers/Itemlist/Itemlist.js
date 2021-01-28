@@ -46,8 +46,8 @@ const Itemlist = (props) => {
   )
   return (
     <div className={style.itemlist}>
-      <Row gutter={[64, 32]}>
-        <Col xs={16} offset={4}>
+      <Row gutter={[64, 64]}>
+        <Col xs={14} offset={5}>
           <div className={style.inputMod}>
             <Input
               placeholder="Search item"
