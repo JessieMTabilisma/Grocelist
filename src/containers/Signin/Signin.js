@@ -26,10 +26,10 @@ const Signin = props => {
         </Col>
       </Row>
       <Row>
-        <Col xs={14}>
+        <Col xs={0} md={14}>
           <img src={Commerce} alt="Commerce Login" className={styles.cover} />
         </Col>
-        <Col xs={8} className={styles.login_form}>
+        <Col xs={24} md={8} className={styles.login_form}>
           <Form name="login" initialValues={{ remember: true }} onFinish={onFinish} onFinishFailed={onFinishFailed} layout="vertical">
             <Form.Item
               name="email"

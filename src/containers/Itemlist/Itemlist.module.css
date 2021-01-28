@@ -1,14 +1,32 @@
 .itemlist{
-    padding: 0rem 1rem 0rem 1rem;
+    padding: 0rem 3rem 0rem 3rem;
     background-color: rgb(255, 255, 255);
 }
 .searchBar{
-    width: 60%;
     padding: 1rem;
     background-color: #ffffff;
-    border-radius: 5px;
+    border: 0;
 }
 .addButton{
     padding: 0.3rem 1rem 0.3rem 1rem;
     border-radius: 5px;
+}
+.gridButton {
+    margin: 10px;
+    border: 0px solid transparent;
+    color: blue;
+}
+.gridButton:focus{
+    outline: none;
+}
+.inputMod{
+    width: auto;
+    text-align: center;
+    border: 1px solid rgb(240, 240, 240);
+    display: flex;
+    border-radius: 5px;
+}
+.divider{ 
+    height: 2.5rem;
+    margin-top: 0.5rem
 }
