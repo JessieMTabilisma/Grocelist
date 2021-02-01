@@ -46,8 +46,8 @@ const Itemlist = (props) => {
   )
   return (
     <div className={style.itemlist}>
-      <Row gutter={[64, 64]}>
-        <Col xs={14} offset={5}>
+      <Row>
+        <Col xs={{ span: 24 }} md={{ span: 18, offset: 3 }} lg={{ span: 16, offset: 4 }} xl={{ span: 14, offset: 5 }} xxl={{ span: 12, offset: 6 }} >
           <div className={style.inputMod}>
             <Input
               placeholder="Search item"
@@ -58,10 +58,12 @@ const Itemlist = (props) => {
               className={style.searchBar}
               bordered={false}
             />
-            <Divider type="vertical" className={style.divider} />
+            <Divider type="vertical" className={style.divider}/>
             {viewPoint === true ? (<Button size="large" className={style.gridButton} icon={<AppstoreOutlined />} onClick={() => setViewPoint(!viewPoint)}>Grid</Button>) : (<Button className={style.gridButton} icon={<BarsOutlined />} size="large" onClick={() => setViewPoint(!viewPoint)}>List</Button>)}
           </div>
         </Col>
+      </Row>
+      <Row gutter={[24, 24]}>
         {viewPoint === true ? (
           <Col xs={24}>
             <List
@@ -85,38 +87,13 @@ const Itemlist = (props) => {
           <>
             {list.map(item => {
               return (
-                <Col xs={6} key={item.id}>
+                <Col xs={12} sm={12} md={8} lg={6} xl={6} xxl={4} key={item.id}>
                   <ItemCard item={item} addMe={() => handleButton(item)}/>
                 </Col>
               )
             })}
           </>
         )}
-        {/* <Col xs={24}>
-          <List
-            locale={{ emptyText: 'No Item' }}
-            dataSource={list}
-            renderItem={item =>
-              item.selected ? null : (
-              // eslint-disable-next-line react/jsx-key
-                <List.Item actions={[<Button className={style.addButton} type="primary" icon={<PlusOutlined />} onClick={() => handleButton(item)}>Add</Button>]}>
-                  <List.Item.Meta
-                    avatar={<img src={item.product_image} alt={item.product_name} style={{ height: '4rem', maxWidth: '4rem' }} />}
-                    title={<Title level={4}>{item.product_name}</Title>}
-                    description={<Text>qty: per item, per box </Text>}
-                  />
-                </List.Item>
-              )
-            }
-          />
-        </Col>
-        {list.map(item => {
-          return (
-            <Col xs={6} key={item.id}>
-              <ItemCard item={item} addMe={() => handleButton(item)}/>
-            </Col>
-          )
-        })} */}
       </Row>
     </div>
   )
